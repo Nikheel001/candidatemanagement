@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.abk.candidatemanagement.model.Organization;
-import com.abk.candidatemanagement.service.OrganizationManagementService;
+import com.abk.candidatemanagement.model.Suborganization;
+import com.abk.candidatemanagement.service.SuborganizationManagementService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,10 +13,10 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class SuborganizationController {
 
-	private final OrganizationManagementService organizationManagementService;
+	private final SuborganizationManagementService suborganizationManagementService;
 
 	@PostMapping
-	public Organization createOrganization(@RequestBody Organization organization) {
-		return organizationManagementService.createOneOrganization(organization);
+	public Suborganization createOrganization(@RequestBody Suborganization organization) {
+		return suborganizationManagementService.createOneSuborganization(organization);
 	}
 }

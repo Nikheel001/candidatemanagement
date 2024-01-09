@@ -1,11 +1,15 @@
 package com.abk.candidatemanagement.controller;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.abk.candidatemanagement.model.Organization;
-import com.abk.candidatemanagement.service.OrganizationManagementService;
+import com.abk.candidatemanagement.model.Role;
+import com.abk.candidatemanagement.service.RoleManagementService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,10 +17,25 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class RoleController {
 
-	private final OrganizationManagementService organizationManagementService;
+	private final RoleManagementService roleManagementService;
 
 	@PostMapping
-	public Organization createOrganization(@RequestBody Organization organization) {
-		return organizationManagementService.createOneOrganization(organization);
+	public Role createRole(@RequestBody Role role) {
+		return roleManagementService.creatRole(role);
+	}
+	
+	@GetMapping("")
+	public Role fetchRole(@PathVariable Integer roleId) {
+		return roleManagementService.readRoleById(roleId);
+	}
+	
+	@PutMapping("")
+	public Role modifyRole(@RequestBody Role role) {
+		return roleManagementService.modifyRole(role);
+	}
+	
+	@DeleteMapping
+	public void deleteRole(@PathVariable Integer roleId) {
+		roleManagementService.removeRoleById(roleId);
 	}
 }
