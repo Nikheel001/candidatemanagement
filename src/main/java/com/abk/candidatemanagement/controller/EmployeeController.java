@@ -3,6 +3,7 @@ package com.abk.candidatemanagement.controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,7 +25,7 @@ public class EmployeeController {
 
 	private final EmployeeManagementService employeeManagementService;
 
-	@PostMapping("")
+	@PostMapping
 	public Employee createEmployee(@Valid @RequestBody Employee employee) {
 		return employeeManagementService.creatEmployee(employee);
 	}
@@ -34,7 +35,7 @@ public class EmployeeController {
 		return employeeManagementService.readEmployeeById(employeeId);
 	}
 
-	@PutMapping("")
+	@PutMapping
 	public Employee modifyEmployee(@Valid @RequestBody Employee employee) {
 		return employeeManagementService.modifyEmployee(employee);
 	}
@@ -42,5 +43,10 @@ public class EmployeeController {
 	@DeleteMapping("{employeeId}")
 	public void deleteEmployee(@PathVariable Integer employeeId) {
 		employeeManagementService.removeEmployeeById(employeeId);
+	}
+	
+	@PatchMapping("{employeeId}/department/{departmentId}")
+	public Employee addToDepartment(@PathVariable Integer employeeId, @PathVariable Integer departmentId) {
+//		return employeeManagementService.modifyEmployee(employee);
 	}
 }

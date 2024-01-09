@@ -17,7 +17,7 @@ public class Department implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="dep_id")
-	private int depId;
+	private Integer depId;
 
 	private String name;
 
@@ -28,11 +28,11 @@ public class Department implements Serializable {
 	public Department() {
 	}
 
-	public int getDepId() {
+	public Integer getDepId() {
 		return this.depId;
 	}
 
-	public void setDepId(int depId) {
+	public void setDepId(Integer depId) {
 		this.depId = depId;
 	}
 

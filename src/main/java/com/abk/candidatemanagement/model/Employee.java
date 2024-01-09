@@ -27,10 +27,10 @@ public class Employee implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="emp_id")
-	private int empId;
+	private Integer empId;
 
 	@Min(value = 18, message = "Age must be at least 18")
-	private int age;
+	private Integer age;
 
 	@Email(message = "Invalid email format")
 	private String email;
@@ -58,19 +58,19 @@ public class Employee implements Serializable {
 	public Employee() {
 	}
 
-	public int getEmpId() {
+	public Integer getEmpId() {
 		return this.empId;
 	}
 
-	public void setEmpId(int empId) {
+	public void setEmpId(Integer empId) {
 		this.empId = empId;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return this.age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 

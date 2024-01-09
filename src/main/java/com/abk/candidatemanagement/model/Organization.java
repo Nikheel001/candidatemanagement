@@ -17,7 +17,7 @@ public class Organization implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="org_id")
-	private int orgId;
+	private Integer orgId;
 
 	private String name;
 
@@ -28,11 +28,11 @@ public class Organization implements Serializable {
 	public Organization() {
 	}
 
-	public int getOrgId() {
+	public Integer getOrgId() {
 		return this.orgId;
 	}
 
-	public void setOrgId(int orgId) {
+	public void setOrgId(Integer orgId) {
 		this.orgId = orgId;
 	}
 

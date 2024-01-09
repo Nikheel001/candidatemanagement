@@ -17,7 +17,7 @@ public class Suborganization implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="sub_org_id")
-	private int subOrgId;
+	private Integer subOrgId;
 
 	private String name;
 
@@ -33,11 +33,11 @@ public class Suborganization implements Serializable {
 	public Suborganization() {
 	}
 
-	public int getSubOrgId() {
+	public Integer getSubOrgId() {
 		return this.subOrgId;
 	}
 
-	public void setSubOrgId(int subOrgId) {
+	public void setSubOrgId(Integer subOrgId) {
 		this.subOrgId = subOrgId;
 	}
 
