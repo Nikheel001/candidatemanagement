@@ -8,4 +8,6 @@ public interface EmployeeManagementService {
 	Employee readEmployeeById(Integer employeeId);
 	Employee modifyEmployee(Employee employee);
 	void removeEmployeeById(Integer employeeId);
+	Employee addEmployeeToDepartment(Employee employee, Integer departmentId);
+	Employee attachRoleToEmployee(Employee employee, Integer roleId);
 }

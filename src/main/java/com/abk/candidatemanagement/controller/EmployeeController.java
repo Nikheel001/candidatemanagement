@@ -45,8 +45,13 @@ public class EmployeeController {
 		employeeManagementService.removeEmployeeById(employeeId);
 	}
 	
-	@PatchMapping("{employeeId}/department/{departmentId}")
-	public Employee addToDepartment(@PathVariable Integer employeeId, @PathVariable Integer departmentId) {
-//		return employeeManagementService.modifyEmployee(employee);
+	@PatchMapping("department/{departmentId}")
+	public Employee belongsToDepartment(@Valid @RequestBody Employee employee, @PathVariable Integer departmentId) {
+		return employeeManagementService.addEmployeeToDepartment(employee, departmentId);
+	}
+	
+	@PatchMapping("role/{roleId}")
+	public Employee attachRoleToEmployee(@Valid @RequestBody Employee employee, @PathVariable Integer roleId) {
+		return employeeManagementService.attachRoleToEmployee(employee, roleId);
 	}
 }

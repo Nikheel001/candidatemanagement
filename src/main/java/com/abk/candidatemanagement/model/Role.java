@@ -4,6 +4,8 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the role database table.
@@ -22,7 +24,8 @@ public class Role implements Serializable {
 	private String name;
 
 	//bi-directional many-to-one association to Employee
-	@OneToMany(mappedBy="role")
+	@OneToMany(mappedBy="role", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Employee> employees;
 
 	public Role() {
@@ -64,6 +67,13 @@ public class Role implements Serializable {
 		employee.setRole(null);
 
 		return employee;
+	}
+	
+	@PreRemove
+	public void preRemove() {
+		if (getEmployees().size() > 0) {
+			throw new IllegalStateException("Cannot delete a role with assigned employees");
+		}
 	}
 
 }

@@ -4,25 +4,27 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * The persistent class for the department database table.
  * 
  */
 @Entity
-@NamedQuery(name="Department.findAll", query="SELECT d FROM Department d")
+@NamedQuery(name = "Department.findAll", query = "SELECT d FROM Department d")
 public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="dep_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "dep_id")
 	private Integer depId;
 
 	private String name;
 
-	//bi-directional many-to-one association to Employee
-	@OneToMany(mappedBy="department")
+	// bi-directional many-to-one association to Employee
+	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Employee> employees;
 
 	public Department() {
@@ -64,6 +66,13 @@ public class Department implements Serializable {
 		employee.setDepartment(null);
 
 		return employee;
+	}
+
+	@PreRemove
+	public void preRemove() {
+		if (getEmployees().size() > 0) {
+			throw new IllegalStateException("Cannot delete a role with assigned employees");
+		}
 	}
 
 }
