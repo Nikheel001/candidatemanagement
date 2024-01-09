@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abk.candidatemanagement.model.Role;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/role/")
 public class RoleController {
 
 	private final RoleManagementService roleManagementService;
@@ -24,17 +26,17 @@ public class RoleController {
 		return roleManagementService.creatRole(role);
 	}
 	
-	@GetMapping("")
+	@GetMapping("{roleId}")
 	public Role fetchRole(@PathVariable Integer roleId) {
 		return roleManagementService.readRoleById(roleId);
 	}
 	
-	@PutMapping("")
+	@PutMapping
 	public Role modifyRole(@RequestBody Role role) {
 		return roleManagementService.modifyRole(role);
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("{roleId}")
 	public void deleteRole(@PathVariable Integer roleId) {
 		roleManagementService.removeRoleById(roleId);
 	}

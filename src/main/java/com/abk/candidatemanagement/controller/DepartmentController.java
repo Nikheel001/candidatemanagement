@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abk.candidatemanagement.model.Department;
@@ -15,27 +16,28 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/department/")
 public class DepartmentController {
 
 	private final DepartmentManagementService DepartmentManagementService;
 
 	@PostMapping
-	public Department createDepartment(@RequestBody Department Department) {
-		return DepartmentManagementService.creatDepartment(Department);
+	public Department createDepartment(@RequestBody Department department) {
+		return DepartmentManagementService.creatDepartment(department);
 	}
 
-	@GetMapping("")
-	public Department fetchDepartment(@PathVariable Integer DepartmentId) {
-		return DepartmentManagementService.readDepartmentById(DepartmentId);
+	@GetMapping("{departmentId}")
+	public Department fetchDepartment(@PathVariable Integer departmentId) {
+		return DepartmentManagementService.readDepartmentById(departmentId);
 	}
 
-	@PutMapping("")
-	public Department modifyDepartment(@RequestBody Department Department) {
-		return DepartmentManagementService.modifyDepartment(Department);
+	@PutMapping
+	public Department modifyDepartment(@RequestBody Department department) {
+		return DepartmentManagementService.modifyDepartment(department);
 	}
 
-	@DeleteMapping
-	public void deleteDepartment(@PathVariable Integer DepartmentId) {
-		DepartmentManagementService.removeDepartmentById(DepartmentId);
+	@DeleteMapping("{departmentId}")
+	public void deleteDepartment(@PathVariable Integer departmentId) {
+		DepartmentManagementService.removeDepartmentById(departmentId);
 	}
 }

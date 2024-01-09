@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abk.candidatemanagement.model.Employee;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/employee/")
 public class EmployeeController {
 
 	private final EmployeeManagementService employeeManagementService;
@@ -24,17 +26,17 @@ public class EmployeeController {
 		return employeeManagementService.creatEmployee(employee);
 	}
 
-	@GetMapping("")
+	@GetMapping("{employeeId}")
 	public Employee fetchEmployee(@PathVariable Integer employeeId) {
 		return employeeManagementService.readEmployeeById(employeeId);
 	}
 
-	@PutMapping("")
+	@PutMapping
 	public Employee modifyEmployee(@RequestBody Employee employee) {
 		return employeeManagementService.modifyEmployee(employee);
 	}
 
-	@DeleteMapping
+	@DeleteMapping("{employeeId}")
 	public void deleteEmployee(@PathVariable Integer employeeId) {
 		employeeManagementService.removeEmployeeById(employeeId);
 	}
