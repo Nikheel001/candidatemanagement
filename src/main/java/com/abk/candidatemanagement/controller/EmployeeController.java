@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-public class OrganizationController {
+public class EmployeeController {
 
 	private final OrganizationManagementService organizationManagementService;
 
