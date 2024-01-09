@@ -1,0 +1,234 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "candidatemanagement",
+    "dateExported": "2024-01-09T11:23:45.497Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "2bcc4ebe-86b6-4a8b-baa8-315ffe388c5d",
+            "colId": "c07b1f84-a57e-4d5e-935f-b9b0a883630f",
+            "containerId": "",
+            "name": "add_role",
+            "url": "http://localhost:8080/role/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-01-09T09:52:33.057Z",
+            "modified": "2024-01-09T09:52:33.057Z",
+            "headers": [
+                {
+                    "name": "Cookie",
+                    "value": "JSESSIONID=2FC4B8521D6EECBA900F043F138C1167"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"test1\",\n  \"employees\":[]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4f945f64-f0ed-424b-b709-129f8570cd32",
+            "colId": "c07b1f84-a57e-4d5e-935f-b9b0a883630f",
+            "containerId": "",
+            "name": "add_employee",
+            "url": "http://localhost:8080/employee/",
+            "method": "POST",
+            "sortNum": 12500,
+            "created": "2024-01-09T09:57:10.474Z",
+            "modified": "2024-01-09T10:38:05.349Z",
+            "headers": [
+                {
+                    "name": "Cookie",
+                    "value": "JSESSIONID=2FC4B8521D6EECBA900F043F138C1167"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"age\":20,\n  \"email\":\"abcd@gmail.com\",\n  \"mobileno\":\"1234567890\",\n  \"name\":\"abcdUser\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a93b2b30-9450-43bd-bcde-106a5311a519",
+            "colId": "c07b1f84-a57e-4d5e-935f-b9b0a883630f",
+            "containerId": "",
+            "name": "update_employee",
+            "url": "http://localhost:8080/employee/",
+            "method": "PUT",
+            "sortNum": 13125,
+            "created": "2024-01-09T10:38:16.664Z",
+            "modified": "2024-01-09T10:40:13.401Z",
+            "headers": [
+                {
+                    "name": "Cookie",
+                    "value": "JSESSIONID=2FC4B8521D6EECBA900F043F138C1167"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"age\": 20,\n  \"email\": \"abcd@gmail.com\",\n  \"mobileno\": \"1234567890\",\n  \"name\": \"abcdUser\",\n  \"department\": {\n    \"depId\": 1,\n    \"name\": \"testDepartment\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4c5140a1-29eb-4814-86a1-d6aed287c4f3",
+            "colId": "c07b1f84-a57e-4d5e-935f-b9b0a883630f",
+            "containerId": "",
+            "name": "patch_update_employee_role",
+            "url": "http://localhost:8080/employee/role/1",
+            "method": "PATCH",
+            "sortNum": 13437.5,
+            "created": "2024-01-09T10:52:32.106Z",
+            "modified": "2024-01-09T11:19:06.242Z",
+            "headers": [
+                {
+                    "name": "Cookie",
+                    "value": "JSESSIONID=2FC4B8521D6EECBA900F043F138C1167"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"empId\": 1,\n  \"age\": 20,\n  \"email\": \"abcd@gmail.com\",\n  \"mobileno\": \"1234567890\",\n  \"name\": \"abcdUser\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ee0bf581-4585-477e-aa41-9670c25e2078",
+            "colId": "c07b1f84-a57e-4d5e-935f-b9b0a883630f",
+            "containerId": "",
+            "name": "patch_update_employee_rdepartment",
+            "url": "http://localhost:8080/employee/department/1",
+            "method": "PATCH",
+            "sortNum": 13593.8,
+            "created": "2024-01-09T10:58:44.137Z",
+            "modified": "2024-01-09T10:59:01.707Z",
+            "headers": [
+                {
+                    "name": "Cookie",
+                    "value": "JSESSIONID=2FC4B8521D6EECBA900F043F138C1167"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"empId\": 1,\n  \"age\": 20,\n  \"email\": \"abcd@gmail.com\",\n  \"mobileno\": \"1234567890\",\n  \"name\": \"abcdUser\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1f071035-ac68-4a62-842d-244f41cddd14",
+            "colId": "c07b1f84-a57e-4d5e-935f-b9b0a883630f",
+            "containerId": "",
+            "name": "add_department",
+            "url": "http://localhost:8080/department/",
+            "method": "POST",
+            "sortNum": 13750,
+            "created": "2024-01-09T10:32:15.469Z",
+            "modified": "2024-01-09T10:33:27.407Z",
+            "headers": [
+                {
+                    "name": "Cookie",
+                    "value": "JSESSIONID=2FC4B8521D6EECBA900F043F138C1167"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"testDepartment\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "fe0894c5-b860-4b24-b299-e6cd36529e67",
+            "colId": "c07b1f84-a57e-4d5e-935f-b9b0a883630f",
+            "containerId": "",
+            "name": "update_role",
+            "url": "http://localhost:8080/role/",
+            "method": "PUT",
+            "sortNum": 15000,
+            "created": "2024-01-09T09:54:38.341Z",
+            "modified": "2024-01-09T09:55:24.735Z",
+            "headers": [
+                {
+                    "name": "Cookie",
+                    "value": "JSESSIONID=2FC4B8521D6EECBA900F043F138C1167"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"roleId\":\"1\",\n  \"name\":\"test_updated2\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f765c889-3c4e-4594-8a64-594b4aa1d286",
+            "colId": "c07b1f84-a57e-4d5e-935f-b9b0a883630f",
+            "containerId": "",
+            "name": "remove_role",
+            "url": "http://localhost:8080/role/1",
+            "method": "DELETE",
+            "sortNum": 17500,
+            "created": "2024-01-09T09:56:10.314Z",
+            "modified": "2024-01-09T09:56:29.583Z",
+            "headers": [
+                {
+                    "name": "Cookie",
+                    "value": "JSESSIONID=2FC4B8521D6EECBA900F043F138C1167"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c09807f2-eec0-4375-b188-b507e6187db3",
+            "colId": "c07b1f84-a57e-4d5e-935f-b9b0a883630f",
+            "containerId": "",
+            "name": "fetch_role",
+            "url": "http://localhost:8080/role/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-01-09T09:53:09.674Z",
+            "modified": "2024-01-09T09:55:46.498Z",
+            "headers": [
+                {
+                    "name": "Cookie",
+                    "value": "JSESSIONID=2FC4B8521D6EECBA900F043F138C1167"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "403e06d3-722f-4c65-95ce-b61cba5f2e7f",
+            "colId": "c07b1f84-a57e-4d5e-935f-b9b0a883630f",
+            "containerId": "",
+            "name": "fetch_employee",
+            "url": "http://localhost:8080/employee/1",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-01-09T10:11:59.363Z",
+            "modified": "2024-01-09T10:40:48.806Z",
+            "headers": [
+                {
+                    "name": "Cookie",
+                    "value": "JSESSIONID=2FC4B8521D6EECBA900F043F138C1167"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
