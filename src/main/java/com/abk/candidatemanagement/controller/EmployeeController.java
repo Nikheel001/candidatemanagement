@@ -1,5 +1,6 @@
 package com.abk.candidatemanagement.controller;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,17 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.abk.candidatemanagement.model.Employee;
 import com.abk.candidatemanagement.service.EmployeeManagementService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/employee/")
+@Validated
 public class EmployeeController {
 
 	private final EmployeeManagementService employeeManagementService;
 
-	@PostMapping
-	public Employee createEmployee(@RequestBody Employee employee) {
+	@PostMapping("")
+	public Employee createEmployee(@Valid @RequestBody Employee employee) {
 		return employeeManagementService.creatEmployee(employee);
 	}
 
@@ -31,8 +34,8 @@ public class EmployeeController {
 		return employeeManagementService.readEmployeeById(employeeId);
 	}
 
-	@PutMapping
-	public Employee modifyEmployee(@RequestBody Employee employee) {
+	@PutMapping("")
+	public Employee modifyEmployee(@Valid @RequestBody Employee employee) {
 		return employeeManagementService.modifyEmployee(employee);
 	}
 
