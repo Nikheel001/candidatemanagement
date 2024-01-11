@@ -1,8 +1,13 @@
 package com.abk.candidatemanagement.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.abk.candidatemanagement.model.Department;
+import com.abk.candidatemanagement.dto.DepartmentDto;
+import com.abk.candidatemanagement.entity.Department;
 import com.abk.candidatemanagement.repo.DepartmentRepo;
 import com.abk.candidatemanagement.service.DepartmentManagementService;
 
@@ -12,26 +17,36 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class DepartmentManagementServiceImpl implements DepartmentManagementService {
 
-	private final DepartmentRepo DepartmentRepo;
+	private final ModelMapper mapper;
+	private final DepartmentRepo departmentRepo;
 
 	@Override
-	public Department creatDepartment(Department department) {
-		return DepartmentRepo.save(department);
+	public List<DepartmentDto> fetchAllDepartments() {
+		return departmentRepo.findAll().stream().map((i) -> mapper.map(i, DepartmentDto.class))
+				.collect(Collectors.toList());
 	}
 
 	@Override
-	public Department readDepartmentById(Integer departmentId) {
-		return DepartmentRepo.findById(departmentId).orElseThrow();
+	public DepartmentDto creatDepartment(DepartmentDto departmentDetail) {
+		Department department = mapper.map(departmentDetail, Department.class);
+		return mapper.map(departmentRepo.save(department), DepartmentDto.class);
 	}
 
 	@Override
-	public Department modifyDepartment(Department department) {
-		return DepartmentRepo.saveAndFlush(department);
+	public DepartmentDto readDepartmentById(Integer departmentId) {
+		return mapper.map(departmentRepo.findById(departmentId).orElseThrow(), DepartmentDto.class);
+	}
+
+	@Override
+	public DepartmentDto modifyDepartment(Integer departmentId, DepartmentDto departmentDto) {
+		Department department = departmentRepo.findById(departmentId).orElseThrow();
+		department.setName(departmentDto.getName());
+		return mapper.map(departmentRepo.saveAndFlush(department), DepartmentDto.class);
 	}
 
 	@Override
 	public void removeDepartmentById(Integer departmentId) {
-		DepartmentRepo.deleteById(departmentId);
+		departmentRepo.deleteById(departmentId);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.abk.candidatemanagement.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,31 +11,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.abk.candidatemanagement.model.Department;
+import com.abk.candidatemanagement.dto.DepartmentDto;
 import com.abk.candidatemanagement.service.DepartmentManagementService;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/department/")
+@RequestMapping("/department")
 public class DepartmentController {
 
 	private final DepartmentManagementService DepartmentManagementService;
 
+	@GetMapping
+	public List<DepartmentDto> fetchAllDepartments() {
+		return DepartmentManagementService.fetchAllDepartments();
+	}
+
 	@PostMapping
-	public Department createDepartment(@RequestBody Department department) {
+	public DepartmentDto createDepartment(@RequestBody DepartmentDto department) {
 		return DepartmentManagementService.creatDepartment(department);
 	}
 
 	@GetMapping("{departmentId}")
-	public Department fetchDepartment(@PathVariable Integer departmentId) {
+	public DepartmentDto fetchDepartment(@PathVariable Integer departmentId) {
 		return DepartmentManagementService.readDepartmentById(departmentId);
 	}
 
-	@PutMapping
-	public Department modifyDepartment(@RequestBody Department department) {
-		return DepartmentManagementService.modifyDepartment(department);
+	@PutMapping("{departmentId}")
+	public DepartmentDto modifyDepartment(@PathVariable Integer departmentId, @RequestBody DepartmentDto department) {
+		return DepartmentManagementService.modifyDepartment(departmentId, department);
 	}
 
 	@DeleteMapping("{departmentId}")

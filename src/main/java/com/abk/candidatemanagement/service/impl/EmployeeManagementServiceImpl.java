@@ -1,13 +1,11 @@
 package com.abk.candidatemanagement.service.impl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.abk.candidatemanagement.model.Department;
-import com.abk.candidatemanagement.model.Role;
-import com.abk.candidatemanagement.model.Employee;
-import com.abk.candidatemanagement.repo.DepartmentRepo;
+import com.abk.candidatemanagement.dto.EmployeeDto;
+import com.abk.candidatemanagement.entity.Employee;
 import com.abk.candidatemanagement.repo.EmployeeRepo;
-import com.abk.candidatemanagement.repo.RoleRepo;
 import com.abk.candidatemanagement.service.EmployeeManagementService;
 
 import lombok.AllArgsConstructor;
@@ -17,41 +15,35 @@ import lombok.AllArgsConstructor;
 public class EmployeeManagementServiceImpl implements EmployeeManagementService {
 
 	private final EmployeeRepo employeeRepo;
-	private final DepartmentRepo departmentRepo;
-	private final RoleRepo roleRepo;
+	private final ModelMapper mapper;
 
 	@Override
-	public Employee creatEmployee(Employee employee) {
-		return employeeRepo.save(employee);
+	public EmployeeDto creatEmployee(EmployeeDto employeeDto) {
+		Employee employee = mapper.map(employeeDto, Employee.class);
+		return mapper.map(employeeRepo.save(employee), EmployeeDto.class);
 	}
 
 	@Override
-	public Employee readEmployeeById(Integer employeeId) {
-		return employeeRepo.findById(employeeId).orElseThrow();
+	public EmployeeDto readEmployeeById(Integer employeeId) {
+		Employee employee = employeeRepo.findById(employeeId).orElseThrow();
+		return mapper.map(employee, EmployeeDto.class);
 	}
 
 	@Override
-	public Employee modifyEmployee(Employee employee) {
-		return employeeRepo.saveAndFlush(employee);
+	public EmployeeDto modifyEmployee(Integer employeeId, EmployeeDto employeeDto) {
+		Employee employee = employeeRepo.findById(employeeId).orElseThrow();
+		
+		employee.setName(employeeDto.getName());
+		employee.setAge(employeeDto.getAge());
+		employee.setEmail(employeeDto.getEmail());
+		employee.setMobileno(employeeDto.getMobileno());
+
+		return mapper.map(employeeRepo.saveAndFlush(employee), EmployeeDto.class);
 	}
 
 	@Override
 	public void removeEmployeeById(Integer employeeId) {
 		employeeRepo.deleteById(employeeId);
-	}
-
-	@Override
-	public Employee addEmployeeToDepartment(Employee employee, Integer departmentId) {
-		Department department = departmentRepo.findById(departmentId).orElseThrow();
-		employee.setDepartment(department);
-		return employeeRepo.saveAndFlush(employee);
-	}
-
-	@Override
-	public Employee attachRoleToEmployee(Employee employee, Integer roleId) {
-		Role role = roleRepo.findById(roleId).orElseThrow();
-		employee.setRole(role);
-		return employeeRepo.saveAndFlush(employee);
 	}
 
 }

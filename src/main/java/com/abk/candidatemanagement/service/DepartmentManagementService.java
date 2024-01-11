@@ -1,10 +1,18 @@
 package com.abk.candidatemanagement.service;
 
-import com.abk.candidatemanagement.model.Department;
+import java.util.List;
+
+import com.abk.candidatemanagement.dto.DepartmentDto;
 
 public interface DepartmentManagementService {
-	Department creatDepartment(Department department);
-	Department readDepartmentById(Integer departmentId);
-	Department modifyDepartment(Department department);
+	
+	List<DepartmentDto> fetchAllDepartments();
+	
+	DepartmentDto creatDepartment(DepartmentDto department);
+
+	DepartmentDto readDepartmentById(Integer departmentId);
+
+	DepartmentDto modifyDepartment(Integer departmentId, DepartmentDto department);
+
 	void removeDepartmentById(Integer departmentId);
 }

@@ -1,13 +1,14 @@
 package com.abk.candidatemanagement.service;
 
-import com.abk.candidatemanagement.model.Employee;
+import com.abk.candidatemanagement.dto.EmployeeDto;
 
 public interface EmployeeManagementService {
 
-	Employee creatEmployee(Employee employee);
-	Employee readEmployeeById(Integer employeeId);
-	Employee modifyEmployee(Employee employee);
+	EmployeeDto creatEmployee(EmployeeDto employee);
+
+	EmployeeDto readEmployeeById(Integer employeeId);
+
+	EmployeeDto modifyEmployee(Integer employeeId, EmployeeDto employee);
+
 	void removeEmployeeById(Integer employeeId);
-	Employee addEmployeeToDepartment(Employee employee, Integer departmentId);
-	Employee attachRoleToEmployee(Employee employee, Integer roleId);
 }

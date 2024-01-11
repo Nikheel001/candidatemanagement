@@ -2,7 +2,7 @@ package com.abk.candidatemanagement.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.abk.candidatemanagement.model.Department;
+import com.abk.candidatemanagement.entity.Department;
 
 import jakarta.transaction.Transactional;
 

@@ -1,8 +1,8 @@
 package com.abk.candidatemanagement.service;
 
-import com.abk.candidatemanagement.model.Suborganization;
+import com.abk.candidatemanagement.dto.SuborganizationDto;
 
 public interface SuborganizationManagementService {
 
-	public Suborganization createOneSuborganization(Suborganization suborganization);
+	public SuborganizationDto createOneSuborganization(SuborganizationDto suborganization);
 }

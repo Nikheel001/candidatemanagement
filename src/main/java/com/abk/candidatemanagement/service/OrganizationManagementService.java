@@ -1,8 +1,8 @@
 package com.abk.candidatemanagement.service;
 
-import com.abk.candidatemanagement.model.Organization;
+import com.abk.candidatemanagement.dto.OrganizationDto;
 
 public interface OrganizationManagementService {
 
-	public Organization createOneOrganization(Organization ref);
+	public OrganizationDto createOneOrganization(OrganizationDto ref);
 }

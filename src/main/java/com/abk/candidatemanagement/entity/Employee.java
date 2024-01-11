@@ -1,4 +1,4 @@
-package com.abk.candidatemanagement.model;
+package com.abk.candidatemanagement.entity;
 
 import java.io.Serializable;
 

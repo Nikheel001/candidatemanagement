@@ -1,11 +1,11 @@
 package com.abk.candidatemanagement.service;
 
-import com.abk.candidatemanagement.model.Role;
+import com.abk.candidatemanagement.dto.RoleDto;
 
 public interface RoleManagementService {
 
-	Role creatRole(Role role);
-	Role readRoleById(Integer roleId);
-	Role modifyRole(Role role);
+	RoleDto creatRole(RoleDto role);
+	RoleDto readRoleById(Integer roleId);
+	RoleDto modifyRole(Integer roleId, RoleDto role);
 	void removeRoleById(Integer roleId);
 }

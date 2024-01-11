@@ -1,8 +1,10 @@
 package com.abk.candidatemanagement.service.impl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.abk.candidatemanagement.model.Suborganization;
+import com.abk.candidatemanagement.dto.SuborganizationDto;
+import com.abk.candidatemanagement.entity.Suborganization;
 import com.abk.candidatemanagement.repo.SuborganizationRepo;
 import com.abk.candidatemanagement.service.SuborganizationManagementService;
 
@@ -13,10 +15,12 @@ import lombok.AllArgsConstructor;
 public class SuborganizationManagementServiceImpl implements SuborganizationManagementService {
 
 	private final SuborganizationRepo suborganizationRepo;
+	private final ModelMapper mapper;
 
 	@Override
-	public Suborganization createOneSuborganization(Suborganization suborganization) {
-		return suborganizationRepo.save(suborganization);
+	public SuborganizationDto createOneSuborganization(SuborganizationDto suborganizationDto) {
+		Suborganization suborganization = mapper.map(suborganizationDto, Suborganization.class);
+		return mapper.map(suborganizationRepo.save(suborganization), SuborganizationDto.class);
 	}
 
 }

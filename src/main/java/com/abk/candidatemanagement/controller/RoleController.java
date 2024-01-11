@@ -9,33 +9,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.abk.candidatemanagement.model.Role;
+import com.abk.candidatemanagement.dto.RoleDto;
 import com.abk.candidatemanagement.service.RoleManagementService;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/role/")
+@RequestMapping("/role")
 public class RoleController {
 
 	private final RoleManagementService roleManagementService;
 
 	@PostMapping
-	public Role createRole(@RequestBody Role role) {
+	public RoleDto createRole(@RequestBody RoleDto role) {
 		return roleManagementService.creatRole(role);
 	}
-	
+
 	@GetMapping("{roleId}")
-	public Role fetchRole(@PathVariable Integer roleId) {
+	public RoleDto fetchRole(@PathVariable Integer roleId) {
 		return roleManagementService.readRoleById(roleId);
 	}
-	
-	@PutMapping
-	public Role modifyRole(@RequestBody Role role) {
-		return roleManagementService.modifyRole(role);
+
+	@PutMapping("{roleId}")
+	public RoleDto modifyRole(@PathVariable Integer roleId, @RequestBody RoleDto role) {
+		return roleManagementService.modifyRole(roleId, role);
 	}
-	
+
 	@DeleteMapping("{roleId}")
 	public void deleteRole(@PathVariable Integer roleId) {
 		roleManagementService.removeRoleById(roleId);
