@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.abk.candidatemanagement.dto.SuborganizationDto;
 import com.abk.candidatemanagement.service.SuborganizationManagementService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -18,7 +19,7 @@ public class SuborganizationController {
 	private final SuborganizationManagementService suborganizationManagementService;
 
 	@PostMapping
-	public SuborganizationDto createOrganization(@RequestBody SuborganizationDto suborganization) {
+	public SuborganizationDto createOrganization(@Valid @RequestBody SuborganizationDto suborganization) {
 		return suborganizationManagementService.createOneSuborganization(suborganization);
 	}
 }

@@ -1,5 +1,6 @@
 package com.abk.candidatemanagement.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.abk.candidatemanagement.dto.RoleDto;
 import com.abk.candidatemanagement.service.RoleManagementService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -22,17 +24,17 @@ public class RoleController {
 	private final RoleManagementService roleManagementService;
 
 	@PostMapping
-	public RoleDto createRole(@RequestBody RoleDto role) {
+	public RoleDto createRole(@Valid @RequestBody RoleDto role) {
 		return roleManagementService.creatRole(role);
 	}
 
 	@GetMapping("{roleId}")
-	public RoleDto fetchRole(@PathVariable Integer roleId) {
-		return roleManagementService.readRoleById(roleId);
+	public ResponseEntity<RoleDto> fetchRole(@PathVariable Integer roleId) {
+		return ResponseEntity.ok(roleManagementService.readRoleById(roleId));
 	}
 
 	@PutMapping("{roleId}")
-	public RoleDto modifyRole(@PathVariable Integer roleId, @RequestBody RoleDto role) {
+	public RoleDto modifyRole(@PathVariable Integer roleId,@Valid @RequestBody RoleDto role) {
 		return roleManagementService.modifyRole(roleId, role);
 	}
 

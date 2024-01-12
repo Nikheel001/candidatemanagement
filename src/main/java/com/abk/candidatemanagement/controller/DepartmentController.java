@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.abk.candidatemanagement.dto.DepartmentDto;
 import com.abk.candidatemanagement.service.DepartmentManagementService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -29,7 +30,7 @@ public class DepartmentController {
 	}
 
 	@PostMapping
-	public DepartmentDto createDepartment(@RequestBody DepartmentDto department) {
+	public DepartmentDto createDepartment(@Valid @RequestBody DepartmentDto department) {
 		return DepartmentManagementService.creatDepartment(department);
 	}
 
@@ -39,7 +40,7 @@ public class DepartmentController {
 	}
 
 	@PutMapping("{departmentId}")
-	public DepartmentDto modifyDepartment(@PathVariable Integer departmentId, @RequestBody DepartmentDto department) {
+	public DepartmentDto modifyDepartment(@PathVariable Integer departmentId,@Valid @RequestBody DepartmentDto department) {
 		return DepartmentManagementService.modifyDepartment(departmentId, department);
 	}
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.abk.candidatemanagement.dto.EmployeeDto;
 import com.abk.candidatemanagement.entity.Employee;
+import com.abk.candidatemanagement.exception.ResourceNotFoundException;
 import com.abk.candidatemanagement.repo.EmployeeRepo;
 import com.abk.candidatemanagement.service.EmployeeManagementService;
 
@@ -25,14 +26,16 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
 
 	@Override
 	public EmployeeDto readEmployeeById(Integer employeeId) {
-		Employee employee = employeeRepo.findById(employeeId).orElseThrow();
+		Employee employee = employeeRepo.findById(employeeId).orElseThrow(
+				() -> new ResourceNotFoundException("Employee not found for id: {%d}".formatted(employeeId)));
 		return mapper.map(employee, EmployeeDto.class);
 	}
 
 	@Override
 	public EmployeeDto modifyEmployee(Integer employeeId, EmployeeDto employeeDto) {
-		Employee employee = employeeRepo.findById(employeeId).orElseThrow();
-		
+		Employee employee = employeeRepo.findById(employeeId).orElseThrow(
+				() -> new ResourceNotFoundException("Employee not found for id: {%d}".formatted(employeeId)));
+
 		employee.setName(employeeDto.getName());
 		employee.setAge(employeeDto.getAge());
 		employee.setEmail(employeeDto.getEmail());

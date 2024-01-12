@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.abk.candidatemanagement.dto.OrganizationDto;
 import com.abk.candidatemanagement.service.OrganizationManagementService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -18,7 +19,7 @@ public class OrganizationController {
 	private final OrganizationManagementService organizationManagementService;
 
 	@PostMapping
-	public OrganizationDto createOrganization(@RequestBody OrganizationDto organization) {
+	public OrganizationDto createOrganization(@Valid @RequestBody OrganizationDto organization) {
 		return organizationManagementService.createOneOrganization(organization);
 	}
 }

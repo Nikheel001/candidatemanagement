@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.abk.candidatemanagement.dto.RoleDto;
 import com.abk.candidatemanagement.entity.Role;
+import com.abk.candidatemanagement.exception.ResourceNotFoundException;
 import com.abk.candidatemanagement.repo.RoleRepo;
 import com.abk.candidatemanagement.service.RoleManagementService;
 
@@ -25,13 +26,15 @@ public class RoleManagementServiceImpl implements RoleManagementService {
 
 	@Override
 	public RoleDto readRoleById(Integer roleId) {
-		Role role = roleRepo.findById(roleId).orElseThrow();
+		Role role = roleRepo.findById(roleId)
+				.orElseThrow(() -> new ResourceNotFoundException("Role not found for id: {%d}".formatted(roleId)));
 		return mapper.map(role, RoleDto.class);
 	}
 
 	@Override
 	public RoleDto modifyRole(Integer roleId, RoleDto roleDto) {
-		Role role = roleRepo.findById(roleId).orElseThrow();
+		Role role = roleRepo.findById(roleId)
+				.orElseThrow(() -> new ResourceNotFoundException("Role not found for id: {%d}".formatted(roleId)));
 		role.setName(roleDto.getName());
 		return mapper.map(roleRepo.saveAndFlush(role), RoleDto.class);
 	}

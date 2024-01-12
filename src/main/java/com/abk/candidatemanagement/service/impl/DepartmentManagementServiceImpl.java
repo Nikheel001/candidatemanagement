@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.abk.candidatemanagement.dto.DepartmentDto;
 import com.abk.candidatemanagement.entity.Department;
+import com.abk.candidatemanagement.exception.ResourceNotFoundException;
 import com.abk.candidatemanagement.repo.DepartmentRepo;
 import com.abk.candidatemanagement.service.DepartmentManagementService;
 
@@ -34,12 +35,15 @@ public class DepartmentManagementServiceImpl implements DepartmentManagementServ
 
 	@Override
 	public DepartmentDto readDepartmentById(Integer departmentId) {
-		return mapper.map(departmentRepo.findById(departmentId).orElseThrow(), DepartmentDto.class);
+		return mapper.map(departmentRepo.findById(departmentId).orElseThrow(
+				() -> new ResourceNotFoundException("Department not found for id: {%d}".formatted(departmentId))),
+				DepartmentDto.class);
 	}
 
 	@Override
 	public DepartmentDto modifyDepartment(Integer departmentId, DepartmentDto departmentDto) {
-		Department department = departmentRepo.findById(departmentId).orElseThrow();
+		Department department = departmentRepo.findById(departmentId).orElseThrow(
+				() -> new ResourceNotFoundException("Department not found for id: {%d}".formatted(departmentId)));
 		department.setName(departmentDto.getName());
 		return mapper.map(departmentRepo.saveAndFlush(department), DepartmentDto.class);
 	}
